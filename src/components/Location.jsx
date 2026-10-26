@@ -68,6 +68,11 @@ const Location = () => {
 
     // 페이지 로드 시 정보창 자동으로 열기
     infoWindow.open(map, marker);
+
+    // 정리: 개발 모드 StrictMode에서 같은 div에 지도가 두 번 만들어지지 않도록 파괴한다
+    return () => {
+      map.destroy();
+    };
   }, []);
 
   const handleCopyAddress = () => {

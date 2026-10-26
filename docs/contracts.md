@@ -25,9 +25,10 @@
 
 ## 네이버 지도 API 호출 형식
 
-- 로드: `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=<클라이언트ID>` 를 헤드에서 동기 스크립트로 불러온다. 성공하면 `window.naver.maps`가 생긴다.
-- 사용하는 기능: `Map`(center, zoom 18, zoomControl TOP_RIGHT, draggable, scrollWheel, disableDoubleClickZoom), `Marker`, `InfoWindow`, `Event.addListener(marker, 'click')`.
-- 실패: 스크립트가 로드되지 않으면 `window.naver`가 없고, 사이트는 콘솔 오류 한 줄을 남기고 지도 영역을 비워 둔다. 인증 실패(미등록 도메인)는 네이버가 스크립트 안에서 경고를 띄운다.
+- 로드: `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=2965gcgzan` 를 헤드에서 동기 스크립트로 불러온다(신규 Maps). `callback` 파라미터를 쓰는 비동기 로드는 쓰지 않는다. 성공하면 `window.naver.maps`가 생긴다.
+- 인증 실패 함수: 스크립트보다 앞에서 전역 함수 `window.navermap_authFailure`를 정의해 둔다. 신규 Maps는 키 오류나 서비스 URL 미등록으로 인증에 실패하면 이 함수를 호출하고, 사이트는 콘솔에 오류 한 줄(원인 후보: 키 오류, 서비스 URL 미등록)을 남긴다. 화면에는 띄우지 않는다.
+- 사용하는 기능: `Map`(center, zoom 18, zoomControl TOP_RIGHT, draggable, scrollWheel, disableDoubleClickZoom), `Marker`, `InfoWindow`, `Event.addListener(marker, 'click')`, 그리고 컴포넌트가 내려갈 때의 `Map.destroy()`.
+- 실패: 스크립트가 로드되지 않으면 `window.naver`가 없고, 사이트는 콘솔 오류 한 줄을 남기고 지도 영역을 비워 둔다. 인증 실패는 위 함수가 콘솔에 남기며, 지도 영역은 역시 빈 상자로 남는다.
 
 ## Google Fonts 호출 형식
 

@@ -38,8 +38,8 @@
 - '접기'는 `photoSectionRef`로 섹션 상단에 `scrollIntoView`한다. 접은 뒤 화면이 사진첩 중간에 남으면 안 된다.
 
 ### `Location`
-- 지도는 `useEffect` 안에서 `window.naver.maps`를 직접 호출한다. React 상태와 연결되지 않으며, effect는 의존성 `[]`로 한 번만 돈다. cleanup이 없어 개발 모드 `StrictMode`에서는 두 번 생성된다(배포본은 한 번).
-- `window.naver`가 없으면 `console.error` 후 조용히 빈 div로 남긴다. 사용자에게 보이는 오류 메시지는 일부러 없다.
+- 지도는 `useEffect` 안에서 `window.naver.maps`를 직접 호출한다. React 상태와 연결되지 않으며, effect는 의존성 `[]`로 한 번만 돈다. 정리 함수가 `map.destroy()`를 호출하므로 개발 모드 `StrictMode`에서 effect가 두 번 돌아도 지도는 하나만 남는다. 정리 함수를 지우면 개발 모드에서 같은 div에 지도가 두 번 만들어진다.
+- `window.naver`가 없으면 `console.error` 후 조용히 빈 div로 남긴다. 인증 실패는 `index.html`의 `window.navermap_authFailure`가 콘솔에 남기며, 여기 코드가 아니다. 사용자에게 보이는 오류 메시지는 일부러 없다.
 - 정보창 내용은 네이버 API에 HTML 문자열로 넘기므로 여기만 인라인 `style`을 쓴다. 이 예외를 다른 곳으로 넓히지 않는다.
 - 주소 복사는 `navigator.clipboard.writeText` + `alert`. 복사 대상은 `locationInfo.address`(도로명 주소)뿐이다.
 - `locationInfo`의 지도 URL 옆에 남은 "실제 장소 링크로 변경" 주석은 더 이상 할 일이 아니다. 검색 링크가 최종이며, 주석은 지워도 되고 두어도 된다.
