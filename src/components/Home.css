@@ -1,0 +1,238 @@
+.home__container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+}
+
+.home__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  padding: 2rem;
+}
+
+.home__text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  max-width: 500px;
+}
+
+.home__title {
+  font-size: 4rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #2c5282;
+  position: relative;
+}
+
+.home__palm {
+  display: inline-block;
+  font-size: 3rem;
+}
+
+.home__subtitle {
+  font-size: 1.5rem;
+  color: #4299e1;
+  font-weight: 500;
+}
+
+.home__description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4a5568;
+}
+
+.home__img {
+  background: url('/ohsihun-1st-HBD/images/SIHUN_23.jpg') center/cover no-repeat;
+  box-shadow: inset 0 0 0 12px rgba(66, 153, 225, 0.3);
+  width: 450px;
+  height: 450px;
+  border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+  animation: profile__animate 8s ease-in-out infinite 1s;
+}
+
+@keyframes profile__animate {
+  0% {
+    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.2rem;
+  flex-wrap: wrap;
+}
+
+.button {
+  flex: 1 1 auto;
+  min-width: 130px;
+  padding: 0.75rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, #3182ce, #2c5282);
+  color: white;
+  border: none;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(44, 82, 130, 0.4);
+}
+
+.button-reverse {
+  background: white;
+  color: #2c5282;
+  border: 2px solid #4299e1;
+}
+
+.button-reverse:hover {
+  background: #4299e1;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.home__scroll {
+  position: absolute;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home__scroll-name {
+  color: #4299e1;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.wheel {
+  font-size: 2rem;
+  color: #2c5282;
+  animation: scroll 2s ease infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(15px);
+  }
+}
+
+/* 반응형 */
+@media screen and (max-width: 1024px) {
+  .home__title {
+    font-size: 3.5rem;
+  }
+
+  .home__img {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home__content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .home__title {
+    font-size: 3rem;
+  }
+
+  .home__img {
+    width: 350px;
+    height: 350px;
+  }
+
+  .home__text-block {
+    text-align: center;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .home__scroll {
+    bottom: 1.5rem;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0.00rem 1.5rem;
+  }
+
+  .home__scroll-name {
+    font-size: 1rem;
+  }
+
+  .wheel {
+    font-size: 1.5rem;
+    animation: scroll-horizontal 2s ease infinite;
+  }
+
+  @keyframes scroll-horizontal {
+    0% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(8px);
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .home__title {
+    font-size: 2.5rem;
+  }
+
+  .home__subtitle {
+    font-size: 1.2rem;
+  }
+
+  .home__img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .home__content {
+    padding: 1rem;
+  }
+
+  .home__scroll {
+    bottom: 1rem;
+    flex-direction: row;
+    gap: 0.4rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .home__scroll-name {
+    font-size: 0.8rem;
+  }
+
+  .wheel {
+    font-size: 1.3rem;
+  }
+}

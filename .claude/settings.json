@@ -1,0 +1,7 @@
+{
+  "enabledPlugins": {
+    "dryforge@dryforge": true,
+    "frontend-design@anthropic-plugin-directory": true,
+    "typescript-lsp@claude-plugins-official": true
+  }
+}
