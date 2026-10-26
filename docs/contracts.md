@@ -32,6 +32,6 @@
 
 ## Google Fonts 호출 형식
 
-- `https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Do+Hyeon&family=Dongle&family=Jua&display=swap` 를 스타일시트로 불러온다.
-- 실제로 쓰는 글꼴은 `Do Hyeon`(본문)과 `Jua`(제목), 그리고 `Jua`의 대체로 지정된 `Dongle`이다. 나머지 두 가지는 요청하지만 쓰이지 않는다.
+- `https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Dongle&family=Jua&display=swap` 를 스타일시트로 불러온다.
+- 요청하는 글꼴은 `Do Hyeon`(본문), `Jua`(제목), 그리고 `Jua`의 대체로 지정된 `Dongle` 셋이며, 모두 CSS에서 쓴다.
 - 실패: 글꼴 서버가 응답하지 않으면 `display=swap` 덕분에 시스템 글꼴로 바로 보이고, 나중에 교체된다.
