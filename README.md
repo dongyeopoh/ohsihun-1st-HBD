@@ -145,9 +145,3 @@ React 19, Vite 7, Framer Motion, exifr, CSS
 | [`docs/contracts.md`](docs/contracts.md) | 공개 주소, 공유 미리보기, 외부 API 호출 형식 |
 
 </details>
-
-<br>
-
-<div align="center">
-<sub><a href="https://github.com/emoket/simple-invitation">emoket/simple-invitation</a>을 바탕으로 만들었습니다.</sub>
-</div>
