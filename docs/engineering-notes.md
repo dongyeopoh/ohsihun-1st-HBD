@@ -6,10 +6,10 @@
 - 원인: `vite.config.js`의 `base: '/ohsihun-1st-HBD/'` 때문에 개발 서버도 그 경로 아래에서만 응답한다.
 - 대응: `http://localhost:5173/ohsihun-1st-HBD/`로 연다. `npm run preview -- --port 5173`도 마찬가지로 `http://localhost:5173/ohsihun-1st-HBD/`로 연다(기본 포트 4173은 네이버 콘솔에 등록되지 않아 지도가 뜨지 않는다).
 
-## 저장소를 새로 받으면 소스가 안 보인다
+## 예전에 받은 저장소에서 소스가 안 보인다
 
-- 증상: `git clone` 직후 `src/`가 없고 빌드 결과물만 있다.
-- 원인: 원격 저장소의 기본 브랜치가 `gh-pages`(배포 브랜치)로 되어 있어 그 브랜치가 체크아웃된다.
+- 증상: 예전에 복제한 작업 폴더에서 `src/`가 없고 빌드 결과물만 있다.
+- 원인: 원격 저장소의 기본 브랜치가 `gh-pages`였던 시절에 복제해 그 브랜치가 체크아웃되어 있다. 지금 기본 브랜치는 `main`이라 새로 복제하면 이 문제가 없다.
 - 대응: `git checkout main`. 소스 작업은 항상 `main`에서 한다.
 
 ## 빌드했는데 커밋에 `dist/`가 안 들어간다
@@ -51,12 +51,6 @@
 - 원인: 각 컴포넌트의 CSS 파일은 이름만 나뉘어 있을 뿐 모두 하나의 전역 스타일시트로 합쳐진다. `.button`, `.button-group`은 `Home.css`와 `Location.css`에, `.section__title`, `.section__subtitle`은 `Intro.css`, `Photo.css`, `Location.css`에 각각 다른 값으로 중복 정의되어 있고, `App.jsx`의 import 순서(Home → Intro → Photo → Location)상 `Location.css`의 정의가 마지막이라 이긴다.
 - 대응: 공통 클래스를 고칠 때는 같은 이름이 정의된 모든 CSS 파일을 `grep`으로 찾아 같이 고친다. 확인: `grep -n "^\.button\b\|^\.section__title" src/components/*.css`.
 
-## 저장소를 새로 받는 절차는 소스가 `main`에 올라간 뒤에야 성립한다
-
-- 증상: `git checkout main`이 "pathspec 'main' did not match"로 실패한다.
-- 원인: 원격에는 아직 `gh-pages` 브랜치만 있다. 소스 최초 커밋과 `git push origin main`이 끝나기 전까지는 복제한 저장소에 `main`이 없다.
-- 대응: 소스가 있는 로컬 작업 폴더에서 먼저 `main`을 푸시한다. 그 전에는 새로 복제한 곳에서 소스 작업을 할 수 없다.
-
 ## `sips -Z`는 작은 사진을 확대한다
 
 - 증상: 긴 변이 2000px 이하인 사진에 `sips -Z 2000`을 걸면 사진이 2000px로 커지고 용량도 는다.
@@ -71,3 +65,4 @@
 4. `Home.css`의 `SIHUN_23`, `Intro.jsx`의 `SIHUN_12`, `index.html`의 `SIHUN_6`이 여전히 의도한 사진인지 연다.
 5. `npm run dev`에서 사진첩을 끝까지 펼쳐 깨진 타일이 없는지, 캡션이 뜨는지 본다.
 6. `npm run build` 뒤 `ls dist/images | wc -l`이 `public/images` 파일 수와 같은지 본다.
+7. 첫 화면 사진(`SIHUN_23`)·소개 사진(`SIHUN_12`)이나 사진첩 처음 6장이 바뀌었으면 `docs/screenshots/`의 README 화면 캡처도 다시 찍는다. 캡처는 사이트 화면을 찍은 별도 PNG이며 사진 원본이 아니므로, 원본 가공 금지 규칙의 대상이 아니다. 개발 서버 포트 5173에서 찍어야 지도가 나온다.

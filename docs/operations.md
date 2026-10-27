@@ -9,9 +9,8 @@
 ## 처음 설정
 
 ```bash
-git clone https://github.com/dongyeopoh/ohsihun-1st-HBD.git
+git clone https://github.com/dongyeopoh/ohsihun-1st-HBD.git   # 기본 브랜치 main이 바로 체크아웃된다
 cd ohsihun-1st-HBD
-git checkout main        # 기본 브랜치가 gh-pages라서 반드시 필요 (원격에 main이 올라간 뒤에만 가능)
 npm ci                   # package-lock.json 기준으로 설치
 ```
 

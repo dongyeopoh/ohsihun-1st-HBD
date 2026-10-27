@@ -18,6 +18,7 @@ ohsihun-1st-HBD/
 │   ├── engineering-notes.md           ← 함정과 대응, 사진 교체 절차
 │   ├── operations.md                  ← 설치·개발·검증·배포·되돌리기 명령
 │   ├── contracts.md                   ← 공개 URL, 공유 미리보기, 외부 API 호출 형식
+│   ├── screenshots/                   ← README용 화면 캡처 (사진 원본 아님)
 │   └── tracking/
 │       ├── status.md                  ← 완료된 것과 남은 일
 │       ├── decisions/

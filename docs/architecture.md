@@ -46,4 +46,4 @@ GitHub Pages (gh-pages 브랜치 루트 = dist/ 내용)
 
 ## 배포 토폴로지
 
-소스와 빌드 결과물이 같은 `main` 브랜치에 있다. `dist/`는 `.gitignore`에 들어 있지만 강제로 추적 중이다. `git subtree push --prefix dist origin gh-pages`가 `dist/`의 내용만 `gh-pages` 브랜치 루트로 밀어 올리고, GitHub Pages는 그 브랜치를 `/ohsihun-1st-HBD/` 경로에 서비스한다. 원격 저장소의 기본 브랜치는 `gh-pages`다.
+소스와 빌드 결과물이 같은 `main` 브랜치에 있다. `dist/`는 `.gitignore`에 들어 있지만 강제로 추적 중이다. `git subtree push --prefix dist origin gh-pages`가 `dist/`의 내용만 `gh-pages` 브랜치 루트로 밀어 올리고, GitHub Pages는 그 브랜치를 `/ohsihun-1st-HBD/` 경로에 서비스한다. 원격 저장소의 기본 브랜치는 `main`이고, GitHub Pages가 서비스하는 브랜치는 `gh-pages`다.
