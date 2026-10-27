@@ -4,7 +4,7 @@
 
 - 증상: `npm run dev` 뒤 `http://localhost:5173/`을 열면 빈 화면이나 404가 나온다.
 - 원인: `vite.config.js`의 `base: '/ohsihun-1st-HBD/'` 때문에 개발 서버도 그 경로 아래에서만 응답한다.
-- 대응: `http://localhost:5173/ohsihun-1st-HBD/`로 연다. `npm run preview`도 마찬가지로 `http://localhost:4173/ohsihun-1st-HBD/`다.
+- 대응: `http://localhost:5173/ohsihun-1st-HBD/`로 연다. `npm run preview -- --port 5173`도 마찬가지로 `http://localhost:5173/ohsihun-1st-HBD/`로 연다(기본 포트 4173은 네이버 콘솔에 등록되지 않아 지도가 뜨지 않는다).
 
 ## 저장소를 새로 받으면 소스가 안 보인다
 
