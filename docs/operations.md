@@ -29,7 +29,7 @@ npm run dev
 ```bash
 npm run lint      # 오류 0이어야 한다
 npm run build     # dist/ 생성. 'SIHUN_23.jpg didn't resolve at build time' 경고는 정상
-npm run preview   # http://localhost:4173/ohsihun-1st-HBD/ 에서 빌드 결과 확인
+npm run preview -- --port 5173   # 개발 서버를 먼저 끈 뒤 http://localhost:5173/ohsihun-1st-HBD/ 에서 빌드 결과 확인. 기본 포트 4173은 네이버 콘솔에 등록되지 않아 지도 인증이 실패한다
 ```
 
 세 가지 외에 자동 테스트는 없다. 변경한 화면은 반드시 직접 열어 본다.

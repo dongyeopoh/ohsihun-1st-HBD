@@ -23,6 +23,19 @@
 - 이미지 주소는 배포된 사이트에서 실제로 열려야 한다. 로컬 경로나 상대 경로는 메신저가 읽지 못한다.
 - 메신저들은 미리보기를 캐시한다. 메타 태그를 바꿔도 이미 공유된 링크의 카드는 즉시 바뀌지 않는다.
 
+## 홈 화면 바로가기 (웹 앱 매니페스트)
+
+휴대폰 브라우저에서 "홈 화면에 추가"를 하면 `manifest.json`과 `browserconfig.xml`이 읽힌다. 약속된 값은 다음과 같다.
+
+| 항목 | 값 |
+|---|---|
+| 이름 | 시훈이의 첫 생일 초대장 |
+| 짧은 이름 (아이콘 아래 표시) | 시훈이 첫 생일 |
+| 아이콘 경로 | `/ohsihun-1st-HBD/android-icon-<크기>.png`, `/ohsihun-1st-HBD/ms-icon-<크기>.png` |
+
+- 아이콘 경로는 배포 경로 접두어 `/ohsihun-1st-HBD/`로 시작해야 한다. 빌드 도구가 이 두 파일 안의 경로에는 접두어를 붙여 주지 않으므로 직접 적는다. 접두어가 빠지면 `https://dongyeopoh.github.io/android-icon-*.png`를 찾다가 404가 난다.
+- `index.html`의 아이콘 링크는 빌드 도구가 접두어를 붙여 주므로 루트 경로(`/favicon.ico`)로 둔다.
+
 ## 네이버 지도 API 호출 형식
 
 - 로드: `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=2965gcgzan` 를 헤드에서 동기 스크립트로 불러온다(신규 Maps). `callback` 파라미터를 쓰는 비동기 로드는 쓰지 않는다. 성공하면 `window.naver.maps`가 생긴다.

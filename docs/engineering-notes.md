@@ -34,7 +34,7 @@
 
 - 증상: 브라우저 네트워크 탭에 같은 `SIHUN_N.jpg`가 두 번 나타난다.
 - 원인: `<img>`가 한 번 받고, exifr가 EXIF를 읽기 위해 같은 URL을 따로 받는다. 버그가 아니다.
-- 대응: 없음. 다만 사진 용량을 줄이는 작업을 하면 두 요청 모두 가벼워진다.
+- 대응: 없음. 사진 용량을 줄이는 것은 보호자 결정으로 하지 않는다.
 
 ## 지도가 빈 회색 상자로 나온다
 
@@ -65,7 +65,7 @@
 
 ## 사진을 추가·교체·삭제할 때 순서
 
-1. 촬영 일시가 있는 JPG를 원본 그대로 준비한다(축소·메타데이터 제거를 하지 않는다. 결정 기록 0007). 확인: `node -e 'require("exifr").parse("<파일>",{pick:["DateTimeOriginal"]}).then(e=>console.log(e?.DateTimeOriginal))'` 가 날짜를 출력해야 한다.
+1. 촬영 일시가 있는 JPG를 원본 그대로 준비한다(축소·메타데이터 제거를 하지 않는다. 보호자 결정). 확인: `node -e 'require("exifr").parse("<파일>",{pick:["DateTimeOriginal"]}).then(e=>console.log(e?.DateTimeOriginal))'` 가 날짜를 출력해야 한다.
 2. 촬영일 순서에 맞는 번호 자리에 넣고, 뒤 번호를 한 칸씩 민다. 빈 번호를 남기지 않는다.
 3. `Photo.jsx`의 `PHOTO_COUNT`를 파일 수에 맞춘다.
 4. `Home.css`의 `SIHUN_23`, `Intro.jsx`의 `SIHUN_12`, `index.html`의 `SIHUN_6`이 여전히 의도한 사진인지 연다.
