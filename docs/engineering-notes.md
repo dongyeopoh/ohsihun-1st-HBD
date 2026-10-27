@@ -4,7 +4,7 @@
 
 - 증상: `npm run dev` 뒤 `http://localhost:5173/`을 열면 빈 화면이나 404가 나온다.
 - 원인: `vite.config.js`의 `base: '/ohsihun-1st-HBD/'` 때문에 개발 서버도 그 경로 아래에서만 응답한다.
-- 대응: `http://localhost:5173/ohsihun-1st-HBD/`로 연다. `npm run preview`도 마찬가지로 `http://localhost:4173/ohsihun-1st-HBD/`다.
+- 대응: `http://localhost:5173/ohsihun-1st-HBD/`로 연다. `npm run preview -- --port 5173`도 마찬가지로 `http://localhost:5173/ohsihun-1st-HBD/`로 연다(기본 포트 4173은 네이버 콘솔에 등록되지 않아 지도가 뜨지 않는다).
 
 ## 저장소를 새로 받으면 소스가 안 보인다
 
@@ -34,16 +34,16 @@
 
 - 증상: 브라우저 네트워크 탭에 같은 `SIHUN_N.jpg`가 두 번 나타난다.
 - 원인: `<img>`가 한 번 받고, exifr가 EXIF를 읽기 위해 같은 URL을 따로 받는다. 버그가 아니다.
-- 대응: 없음. 다만 사진 용량을 줄이는 작업을 하면 두 요청 모두 가벼워진다.
+- 대응: 없음. 사진 용량을 줄이는 것은 보호자 결정으로 하지 않는다.
 
 ## 지도가 빈 회색 상자로 나온다
 
-- 증상: 지도 자리에 아무것도 없고 콘솔에 "네이버 지도 API가 로드되지 않았습니다."가 찍힌다.
+- 증상: 지도 자리에 아무것도 없고 콘솔에 "네이버 지도 인증에 실패했습니다." 또는 "네이버 지도 API가 로드되지 않았습니다."가 찍힌다.
 - 원인 후보 (순서대로 확인):
-  1. 접속 주소가 네이버 콘솔에 등록된 URL이 아니다(예: `127.0.0.1`로 열었는데 `localhost`만 등록됨).
-  2. 광고 차단기나 사내망이 `openapi.map.naver.com`을 막는다.
-  3. `index.html`의 script 태그가 React 번들보다 뒤로 밀렸다. 지도 스크립트는 반드시 헤드에서 동기 로드되어야 `Location`이 마운트될 때 `window.naver`가 있다.
-- 대응: 콘솔 등록 URL 확인 → 네트워크 탭에서 `maps.js` 상태 확인 → `index.html` 순서 확인.
+  1. 콘솔에 "네이버 지도 인증에 실패했습니다."가 있다: `index.html`의 `window.navermap_authFailure`가 호출된 것이다. 접속 주소가 네이버 콘솔에 등록된 URL이 아니거나(예: 포트 5174나 `127.0.0.1`로 열었는데 `http://localhost:5173`만 등록됨), 키 값이 틀렸다.
+  2. 광고 차단기나 사내망이 `oapi.map.naver.com`을 막는다.
+  3. `index.html`의 script 태그가 React 번들보다 뒤로 밀렸다. 지도 스크립트는 반드시 헤드에서 동기 로드되어야 `Location`이 마운트될 때 `window.naver`가 있다. 인증 실패 함수 정의도 지도 스크립트보다 앞에 있어야 한다.
+- 대응: 콘솔의 인증 실패 메시지 확인 → 콘솔 등록 URL 확인(개발은 반드시 `http://localhost:5173/ohsihun-1st-HBD/`) → 네트워크 탭에서 `maps.js` 상태 확인 → `index.html` 순서 확인.
 
 ## 컴포넌트 CSS는 전역이고 같은 클래스는 마지막 import가 이긴다
 
@@ -57,9 +57,15 @@
 - 원인: 원격에는 아직 `gh-pages` 브랜치만 있다. 소스 최초 커밋과 `git push origin main`이 끝나기 전까지는 복제한 저장소에 `main`이 없다.
 - 대응: 소스가 있는 로컬 작업 폴더에서 먼저 `main`을 푸시한다. 그 전에는 새로 복제한 곳에서 소스 작업을 할 수 없다.
 
+## `sips -Z`는 작은 사진을 확대한다
+
+- 증상: 긴 변이 2000px 이하인 사진에 `sips -Z 2000`을 걸면 사진이 2000px로 커지고 용량도 는다.
+- 원인: `sips -Z`(`--resampleHeightWidthMax`)는 "긴 변을 지정한 값으로 맞추는" 동작이지 "지정한 값 이하로 제한하는" 동작이 아니다. 작은 사진도 그 값까지 확대한다.
+- 대응: 긴 변이 2000을 넘는 파일에만 적용한다. `sips -g pixelWidth -g pixelHeight <파일>`로 먼저 재고 조건을 걸어 실행한다. 2026년 10월에 축소를 시험하면서 확인한 사실이다(축소 자체는 보호자 결정으로 하지 않았다). `sips`는 촬영 일시·GPS·방향 메타데이터를 보존하지만, 방향 태그가 없던 파일에 "회전 없음" 태그를 새로 붙이기도 한다.
+
 ## 사진을 추가·교체·삭제할 때 순서
 
-1. 촬영 일시가 있고 GPS 좌표는 없는 JPG를 준비한다. 확인: `node -e 'require("exifr").parse("<파일>",{pick:["DateTimeOriginal","GPSLatitude"]}).then(e=>console.log("date:"+!!e?.DateTimeOriginal,"gps:"+!!e?.GPSLatitude))'` 가 `date:true gps:false`를 출력해야 한다.
+1. 촬영 일시가 있는 JPG를 원본 그대로 준비한다(축소·메타데이터 제거를 하지 않는다. 보호자 결정). 확인: `node -e 'require("exifr").parse("<파일>",{pick:["DateTimeOriginal"]}).then(e=>console.log(e?.DateTimeOriginal))'` 가 날짜를 출력해야 한다.
 2. 촬영일 순서에 맞는 번호 자리에 넣고, 뒤 번호를 한 칸씩 민다. 빈 번호를 남기지 않는다.
 3. `Photo.jsx`의 `PHOTO_COUNT`를 파일 수에 맞춘다.
 4. `Home.css`의 `SIHUN_23`, `Intro.jsx`의 `SIHUN_12`, `index.html`의 `SIHUN_6`이 여전히 의도한 사진인지 연다.

@@ -9,7 +9,7 @@
   │  GET https://dongyeopoh.github.io/ohsihun-1st-HBD/
   ▼
 GitHub Pages (gh-pages 브랜치 루트 = dist/ 내용)
-  ├── index.html ── <script> openapi.map.naver.com (네이버 지도 v3, 전역 window.naver)
+  ├── index.html ── <script> oapi.map.naver.com (네이버 지도 v3 신규 Maps, 전역 window.naver)
   │               └─ <link>   fonts.googleapis.com (Do Hyeon, Jua 등 웹폰트)
   ├── assets/index-*.js, index-*.css   (React 앱 번들)
   └── images/SIHUN_1..24.jpg, parking.jpg   (public/ 에서 그대로 복사)
@@ -42,7 +42,7 @@ GitHub Pages (gh-pages 브랜치 루트 = dist/ 내용)
 
 ## 대표 흐름: 지도
 
-`Location`이 마운트될 때 한 번, `window.naver.maps`가 있는지 확인한 뒤 `locationInfo`의 좌표로 지도(줌 18)·마커·정보창을 만들고 정보창을 바로 연다. 네이버 스크립트가 없으면 콘솔 오류만 남기고 지도 영역은 빈 상자로 남는다. 지도 API 호출은 모두 전역 객체를 통하며 React 상태와 연결되지 않는다.
+`Location`이 마운트될 때 한 번, `window.naver.maps`가 있는지 확인한 뒤 `locationInfo`의 좌표로 지도(줌 18)·마커·정보창을 만들고 정보창을 바로 연다. 컴포넌트가 내려갈 때는 effect 정리 함수가 지도를 `destroy`한다. 네이버 스크립트가 없거나 인증에 실패하면 콘솔 오류만 남기고 지도 영역은 빈 상자로 남는다. 지도 API 호출은 모두 전역 객체를 통하며 React 상태와 연결되지 않는다.
 
 ## 배포 토폴로지
 

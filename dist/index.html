@@ -48,13 +48,18 @@
     <meta name="msapplication-TileImage" content="/ohsihun-1st-HBD/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
 
-    <!-- 네이버 지도 API -->
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cuoh2qsiyd"></script>
+    <!-- 네이버 지도 API (신규 Maps). 인증 실패 시 아래 전역 함수가 호출되므로 스크립트보다 앞에 둔다. -->
+    <script type="text/javascript">
+      window.navermap_authFailure = function () {
+        console.error('네이버 지도 인증에 실패했습니다. 키 오류 또는 서비스 URL 미등록을 확인하세요.');
+      };
+    </script>
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=2965gcgzan"></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Do+Hyeon&family=Dongle&family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Dongle&family=Jua&display=swap" rel="stylesheet">
 
     <!-- HTML Meta Tags -->
     <title>시훈이의 첫 생일 초대장</title>
@@ -86,7 +91,7 @@
       name="twitter:image"
       content="https://dongyeopoh.github.io/ohsihun-1st-HBD/images/SIHUN_6.jpg"
     />
-    <script type="module" crossorigin src="/ohsihun-1st-HBD/assets/index-B3-sBV1w.js"></script>
+    <script type="module" crossorigin src="/ohsihun-1st-HBD/assets/index-7JDSTtF4.js"></script>
     <link rel="stylesheet" crossorigin href="/ohsihun-1st-HBD/assets/index-Bgli4VYF.css">
   </head>
   <body>

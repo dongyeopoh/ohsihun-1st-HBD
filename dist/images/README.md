@@ -1,20 +1,18 @@
 # 이미지 폴더
 
-이 폴더에 돌잔치 사진을 넣어주세요.
+## 파일
 
-## 사진 파일명
-- photo_1.jpg (메인 사진 - Home 페이지에 표시)
-- photo_2.jpg
-- photo_3.jpg
-- photo_4.jpg
-- photo_5.jpg
-- photo_6.jpg
-...
+- `SIHUN_1.jpg` ~ `SIHUN_24.jpg`: 사진첩 사진. 번호는 촬영일 순이고 빈 번호가 있으면 안 됩니다.
+- `parking.jpg`: 오시는 길의 주차 안내 사진.
 
-## 권장 사양
-- 파일 형식: JPG, PNG
-- 해상도: 800x1200 정도 (세로가 긴 사진 권장)
-- 파일 크기: 각 1MB 이하 권장
+## 역할이 정해진 사진
 
-## 사진 개수 변경
-`src/components/Photo.jsx` 파일에서 `PHOTO_COUNT` 변수를 수정하세요.
+- `SIHUN_23`: 첫 화면 큰 사진 (`src/components/Home.css`)
+- `SIHUN_12`: 소개 프로필 사진 (`src/components/Intro.jsx`)
+- `SIHUN_6`: 메신저 공유 미리보기 (`index.html`)
+
+## 사진을 바꿀 때
+
+- 사진 안의 촬영 일시(EXIF)가 있어야 날짜 캡션이 표시됩니다. 메타데이터를 지우는 도구로 가공하지 마세요.
+- 사진 수가 바뀌면 `src/components/Photo.jsx`의 `PHOTO_COUNT`를 같이 고칩니다.
+- 권장: JPG, 세로가 긴 사진. 용량·크기 제한은 없고 원본 그대로 올립니다(보호자 결정).

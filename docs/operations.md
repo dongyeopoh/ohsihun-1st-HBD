@@ -4,7 +4,7 @@
 
 - Node.js 20.19 이상 또는 22.12 이상(빌드 도구 Vite 7의 요구 조건). 확인된 동작 버전은 Node 24.15.0, npm 11.12.1이다. 다른 패키지 관리자는 쓰지 않는다.
 - GitHub 계정이 `dongyeopoh/ohsihun-1st-HBD` 저장소에 쓰기 권한을 갖고 있어야 배포할 수 있다. 로컬 실행에는 권한이 필요 없다.
-- 지도를 로컬에서 보려면 접속 주소가 네이버 클라우드 플랫폼 콘솔에 등록된 개발 주소와 일치해야 한다.
+- 지도를 로컬에서 보려면 접속 주소가 네이버 클라우드 플랫폼 콘솔에 등록된 개발 주소(`http://localhost:5173/ohsihun-1st-HBD/`)와 일치해야 한다. 다른 포트에서는 인증이 실패한다.
 
 ## 처음 설정
 
@@ -29,7 +29,7 @@ npm run dev
 ```bash
 npm run lint      # 오류 0이어야 한다
 npm run build     # dist/ 생성. 'SIHUN_23.jpg didn't resolve at build time' 경고는 정상
-npm run preview   # http://localhost:4173/ohsihun-1st-HBD/ 에서 빌드 결과 확인
+npm run preview -- --port 5173   # 개발 서버를 먼저 끈 뒤 http://localhost:5173/ohsihun-1st-HBD/ 에서 빌드 결과 확인. 기본 포트 4173은 네이버 콘솔에 등록되지 않아 지도 인증이 실패한다
 ```
 
 세 가지 외에 자동 테스트는 없다. 변경한 화면은 반드시 직접 열어 본다.
@@ -74,7 +74,7 @@ git subtree push --prefix dist origin gh-pages
 | 값 | 위치 | 의미 |
 |---|---|---|
 | `base: '/ohsihun-1st-HBD/'` | `vite.config.js` | 배포 경로. 저장소 이름과 같아야 한다. 바꾸면 소스 안의 절대 이미지 경로도 전부 같이 바꿔야 한다. |
-| `ncpClientId=cuoh2qsiyd` | `index.html` | 네이버 지도 클라이언트 ID. 바꾸면 네이버 콘솔에서 새 키에 배포·개발 주소를 등록해야 한다. |
+| `ncpKeyId=2965gcgzan` | `index.html` | 네이버 지도(신규 Maps) 클라이언트 키. 바꾸면 네이버 콘솔에서 새 키에 배포·개발 주소를 등록해야 한다. 이 키는 다른 사이트와 공유된다. |
 
 ## 데이터 초기화
 
